@@ -86,6 +86,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0A0FDF5-525B-4FE8-86AB-24D9FB5F06B3}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttachmentUnitTest", "test\AttachmentUnitTest\AttachmentUnitTest.csproj", "{5E5B48D7-E697-4856-8906-A60AF37E58B4}"

@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="EapType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="BizSystemNotifyService_InstanceCount" DefaultValue="1" />
+    <Parameter Name="NotifyGatewayWeb_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="NotifyGatewayWeb_InstanceCount" DefaultValue="1" />
+    <Parameter Name="AttachmentStateService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="AttachmentStateService_PartitionCount" DefaultValue="1" />
+    <Parameter Name="AttachmentStateService_TargetReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="ConversationCtrlStateService_TargetReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="ConversationCtrlStateService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="ConversationMsgStateService_PartitionCount" DefaultValue="1" />
+    <Parameter Name="ConversationMsgStateService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="ConversationMsgStateService_TargetReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="TodoCenterProxyApi_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="TodoCenterProxyApi_InstanceCount" DefaultValue="1" />
+    <Parameter Name="ApiGateway_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="ApiGateway_InstanceCount" DefaultValue="1" />
+    <Parameter Name="Diagnostics_EventSourceLevel" DefaultValue="Informational" />
+    <Parameter Name="Diagnostics_SerilogEventLevel" DefaultValue="Information" />
+    <Parameter Name="Diagnostics_ElasticsearchHost" DefaultValue="http://127.0.0.1:9200" />
+    <Parameter Name="EnterpriseContactService_InstanceCount" DefaultValue="1" />
+    <Parameter Name="EnterpriseContactService_ServiceDbConnection" DefaultValue="Data Source=(local)\SQLEXPRESS;Initial Catalog=EapSfApp_EnterpriseContactDb;Integrated Security=True;MultipleActiveResultSets=true" />
+    <Parameter Name="GroupFileService_InstanceCount" DefaultValue="1" />
+    <Parameter Name="GroupFileService_ServiceDbConnection" DefaultValue="Data Source=(local)\SQLEXPRESS;Initial Catalog=EapSfApp_GroupFileDb;Integrated Security=True;MultipleActiveResultSets=true" />
+    <Parameter Name="IdSvr_IssuerUri" DefaultValue="http://sso-login" />
+    <Parameter Name="IdSvr_RequireHttps" DefaultValue="false" />
+    <Parameter Name="Minio_Endpoint" DefaultValue="127.0.0.1:9000" />
+    <Parameter Name="Minio_AccessKey" DefaultValue="A9D5AK5B8KJPVNHGNEZ2" />
+    <Parameter Name="Minio_SecretKey" DefaultValue="nfiCNF3R0be3w8UD9xcAZlcJq4cYp3y4eT87WO0g" />
+    <Parameter Name="RabbitMQ_HostAddress" DefaultValue="rabbitmq://127.0.0.1/" />
+    <Parameter Name="RabbitMQ_Username" DefaultValue="guest" />
+    <Parameter Name="RabbitMQ_Password" DefaultValue="guest" />
+    <Parameter Name="RabbitMQ_mdm_HostAddress" DefaultValue="rabbitmq://127.0.0.1/mdm/" />
+    <Parameter Name="RabbitMQ_mdm_Username" DefaultValue="guest" />
+    <Parameter Name="RabbitMQ_mdm_Password" DefaultValue="guest" />
+    <Parameter Name="RabbitMQ_ms_HostAddress" DefaultValue="rabbitmq://127.0.0.1/ms/" />
+    <Parameter Name="RabbitMQ_ms_Username" DefaultValue="guest" />
+    <Parameter Name="RabbitMQ_ms_Password" DefaultValue="guest" />
+    <Parameter Name="Redis_Hosts" DefaultValue="127.0.0.1:6379" />
+    <Parameter Name="UserConfigStateService_PartitionCount" DefaultValue="1" />
+    <Parameter Name="UserConfigStateService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="UserConfigStateService_TargetReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="SystemConfigStateService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="SystemConfigStateService_TargetReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="NotifySessionActorService_PartitionCount" DefaultValue="1" />
+    <Parameter Name="NotifySessionActorService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="NotifySessionActorService_TargetReplicaSetSize" DefaultValue="1" />
+  </Parameters>
+  <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
+       should match the Name and Version attributes of the ServiceManifest element defined in the 
+       ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="BizSystemNotifyServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+          <Section Name="RabbitMQ">
+            <Parameter Name="HostAddress" Value="[RabbitMQ_HostAddress]" />
+            <Parameter Name="Username" Value="[RabbitMQ_Username]" />
+            <Parameter Name="Password" Value="[RabbitMQ_Password]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="NotifyGatewayWebPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+          <Section Name="RabbitMQ_ms">
+            <Parameter Name="HostAddress" Value="[RabbitMQ_ms_HostAddress]" />
+            <Parameter Name="Username" Value="[RabbitMQ_ms_Username]" />
+            <Parameter Name="Password" Value="[RabbitMQ_ms_Password]" />
+          </Section>
+          <Section Name="Redis">
+            <Parameter Name="Hosts" Value="[Redis_Hosts]" />
+          </Section>
+          <Section Name="IdSvr">
+            <Parameter Name="IssuerUri" Value="[IdSvr_IssuerUri]" />
+            <Parameter Name="RequireHttps" Value="[IdSvr_RequireHttps]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+    <EnvironmentOverrides CodePackageRef="code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[NotifyGatewayWeb_ASPNETCORE_ENVIRONMENT]" />
+    </EnvironmentOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="AttachmentStateServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ConversationMsgStateServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ConversationCtrlStateServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="RabbitMQ_ms">
+            <Parameter Name="HostAddress" Value="[RabbitMQ_ms_HostAddress]" />
+            <Parameter Name="Username" Value="[RabbitMQ_ms_Username]" />
+            <Parameter Name="Password" Value="[RabbitMQ_ms_Password]" />
+          </Section>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="NotifySessionActorPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+          <Section Name="RabbitMQ_ms">
+            <Parameter Name="HostAddress" Value="[RabbitMQ_ms_HostAddress]" />
+            <Parameter Name="Username" Value="[RabbitMQ_ms_Username]" />
+            <Parameter Name="Password" Value="[RabbitMQ_ms_Password]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="TodoCenterProxyApiPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+    <EnvironmentOverrides CodePackageRef="code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[TodoCenterProxyApi_ASPNETCORE_ENVIRONMENT]" />
+    </EnvironmentOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ApiGatewayPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+          <Section Name="RabbitMQ">
+            <Parameter Name="HostAddress" Value="[RabbitMQ_HostAddress]" />
+            <Parameter Name="Username" Value="[RabbitMQ_Username]" />
+            <Parameter Name="Password" Value="[RabbitMQ_Password]" />
+          </Section>
+          <Section Name="RabbitMQ_ms">
+            <Parameter Name="HostAddress" Value="[RabbitMQ_ms_HostAddress]" />
+            <Parameter Name="Username" Value="[RabbitMQ_ms_Username]" />
+            <Parameter Name="Password" Value="[RabbitMQ_ms_Password]" />
+          </Section>
+          <Section Name="Redis">
+            <Parameter Name="Hosts" Value="[Redis_Hosts]" />
+          </Section>
+          <Section Name="IdSvr">
+            <Parameter Name="IssuerUri" Value="[IdSvr_IssuerUri]" />
+            <Parameter Name="RequireHttps" Value="[IdSvr_RequireHttps]" />
+          </Section>
+          <Section Name="Minio">
+            <Parameter Name="Endpoint" Value="[Minio_Endpoint]" />
+            <Parameter Name="AccessKey" Value="[Minio_AccessKey]" />
+            <Parameter Name="SecretKey" Value="[Minio_SecretKey]" />
+            <Parameter Name="BucketName" Value="eap" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+    <EnvironmentOverrides CodePackageRef="code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ApiGateway_ASPNETCORE_ENVIRONMENT]" />
+    </EnvironmentOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="EnterpriseContactServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+          <Section Name="RabbitMQ_mdm">
+            <Parameter Name="HostAddress" Value="[RabbitMQ_mdm_HostAddress]" />
+            <Parameter Name="Username" Value="[RabbitMQ_mdm_Username]" />
+            <Parameter Name="Password" Value="[RabbitMQ_mdm_Password]" />
+          </Section>
+          <Section Name="RabbitMQ_ms">
+            <Parameter Name="HostAddress" Value="[RabbitMQ_ms_HostAddress]" />
+            <Parameter Name="Username" Value="[RabbitMQ_ms_Username]" />
+            <Parameter Name="Password" Value="[RabbitMQ_ms_Password]" />
+          </Section>
+          <Section Name="ConnectionStrings">
+            <Parameter Name="ServiceDbConnection" Value="[EnterpriseContactService_ServiceDbConnection]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="GroupFileServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+          <Section Name="ConnectionStrings">
+            <Parameter Name="ServiceDbConnection" Value="[GroupFileService_ServiceDbConnection]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="UserConfigStateServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="SystemConfigStateServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides>
+      <ConfigOverride Name="Config">
+        <Settings>
+          <Section Name="Diagnostics">
+            <Parameter Name="EventSourceLevel" Value="[Diagnostics_EventSourceLevel]" />
+            <Parameter Name="SerilogEventLevel" Value="[Diagnostics_SerilogEventLevel]" />
+            <Parameter Name="ElasticsearchHost" Value="[Diagnostics_ElasticsearchHost]" />
+          </Section>
+        </Settings>
+      </ConfigOverride>
+    </ConfigOverrides>
+  </ServiceManifestImport>
+  <DefaultServices>
+    <!-- The section below creates instances of service types, when an instance of this 
+         application type is created. You can also create one or more instances of service type using the 
+         ServiceFabric PowerShell module.
+         
+         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+    <Service Name="BizSystemNotifyService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="BizSystemNotifyServiceType" InstanceCount="[BizSystemNotifyService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="NotifyGatewayWeb" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="NotifyGatewayWebType" InstanceCount="[NotifyGatewayWeb_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="AttachmentStateService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatefulService ServiceTypeName="AttachmentStateServiceType" TargetReplicaSetSize="[AttachmentStateService_TargetReplicaSetSize]" MinReplicaSetSize="[AttachmentStateService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[AttachmentStateService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="ConversationMsgStateService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatefulService ServiceTypeName="ConversationMsgStateServiceType" TargetReplicaSetSize="[ConversationMsgStateService_TargetReplicaSetSize]" MinReplicaSetSize="[ConversationMsgStateService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[ConversationMsgStateService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="ConversationCtrlStateService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatefulService ServiceTypeName="ConversationCtrlStateServiceType" TargetReplicaSetSize="[ConversationCtrlStateService_TargetReplicaSetSize]" MinReplicaSetSize="[ConversationCtrlStateService_MinReplicaSetSize]">
+        <SingletonPartition />
+      </StatefulService>
+    </Service>
+    <Service Name="TodoCenterProxyApi" ServiceDnsName="todocenterproxyapi.eap" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="TodoCenterProxyApiType" InstanceCount="[TodoCenterProxyApi_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="ApiGateway" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="ApiGatewayType" InstanceCount="[ApiGateway_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="EnterpriseContactService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="EnterpriseContactServiceType" InstanceCount="[EnterpriseContactService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="GroupFileService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="GroupFileServiceType" InstanceCount="[GroupFileService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="UserConfigStateService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatefulService ServiceTypeName="UserConfigStateServiceType" TargetReplicaSetSize="[UserConfigStateService_TargetReplicaSetSize]" MinReplicaSetSize="[UserConfigStateService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[UserConfigStateService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="SystemConfigStateService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatefulService ServiceTypeName="SystemConfigStateServiceType" TargetReplicaSetSize="[SystemConfigStateService_TargetReplicaSetSize]" MinReplicaSetSize="[SystemConfigStateService_MinReplicaSetSize]">
+        <SingletonPartition />
+      </StatefulService>
+    </Service>
+    <Service Name="NotifySessionActorService" GeneratedIdRef="60bb1196-2b8c-45a0-8895-43af41526ada|Volatile">
+      <StatefulService ServiceTypeName="TheActorServiceType" TargetReplicaSetSize="[NotifySessionActorService_TargetReplicaSetSize]" MinReplicaSetSize="[NotifySessionActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[NotifySessionActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>

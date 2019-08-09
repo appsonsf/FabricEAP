@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>ConfigMgmt</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiCommon\ApiCommon.csproj" />
+    <ProjectReference Include="..\ConfigMgmtDomain\ConfigMgmtDomain.csproj" />
+  </ItemGroup>
+  
+</Project>

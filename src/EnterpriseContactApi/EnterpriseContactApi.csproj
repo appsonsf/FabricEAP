@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>EnterpriseContact</RootNamespace>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\ApiCommon\ApiCommon.csproj" />
+    <ProjectReference Include="..\ConfigMgmtDomain\ConfigMgmtDomain.csproj" />
+    <ProjectReference Include="..\EnterpriseContactDomain\EnterpriseContactDomain.csproj" />
+  </ItemGroup>
+  
+</Project>

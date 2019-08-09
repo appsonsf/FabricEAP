@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>GroupFile</RootNamespace>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\ApiCommon\ApiCommon.csproj" />
+    <ProjectReference Include="..\AttachmentDomain\AttachmentDomain.csproj" />
+    <ProjectReference Include="..\EnterpriseContactDomain\EnterpriseContactDomain.csproj" />
+    <ProjectReference Include="..\GroupFileDomain\GroupFileDomain.csproj" />
+    <ProjectReference Include="..\InstantMessageApi\InstantMessageApi.csproj" />
+    <ProjectReference Include="..\InstantMessageDomain\InstantMessageDomain.csproj" />
+  </ItemGroup>
+
+</Project>

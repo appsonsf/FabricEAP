@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/EapIm" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="Diagnostics_ElasticsearchHost" Value="http://elasticsearch.server:9200" />
+    <Parameter Name="ConversationCtrlStateService_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="ConversationCtrlStateService_MinReplicaSetSize" Value="3" />
+    <Parameter Name="ConversationMsgStateService_PartitionCount" Value="9" />
+    <Parameter Name="ConversationMsgStateService_MinReplicaSetSize" Value="3" />
+    <Parameter Name="ConversationMsgStateService_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="RabbitMQ_ms_HostAddress" Value="rabbitmq://rabbitmq.server/ms/" />
+    <Parameter Name="RabbitMQ_ms_Username" Value="ms" />
+    <Parameter Name="RabbitMQ_ms_Password" Value="#{RabbitMQ_ms_Password}#" />
+  </Parameters>
+</Application>

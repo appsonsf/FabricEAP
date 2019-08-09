@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Section Name="Diagnostics">
+    <!--Critial, Error, Warning, Informational, Verbose, LogAlways-->
+    <Parameter Name="EventSourceLevel" Value="Informational" />
+    <!-- 
+        Verbose = 0,
+        Debug = 1,
+        Information = 2,
+        Warning = 3,
+        Error = 4,
+        Fatal = 5
+    -->
+    <Parameter Name="SerilogEventLevel" Value="Debug" />
+    <Parameter Name="ElasticsearchHost" Value="http://127.0.0.1:9200" />
+  </Section>
+  <Section Name="RabbitMQ">
+    <Parameter Name="HostAddress" Value="rabbitmq://localhost/" />
+    <Parameter Name="Username" Value="guest" />
+    <Parameter Name="Password" Value="guest" />
+  </Section>
+  <Section Name="RabbitMQ_ms">
+    <Parameter Name="HostAddress" Value="rabbitmq://localhost/ms" />
+    <Parameter Name="Username" Value="guest" />
+    <Parameter Name="Password" Value="guest" />
+  </Section>
+  <Section Name="Redis">
+    <Parameter Name="Hosts" Value="127.0.0.1:6379"/>
+  </Section>
+  <Section Name="IdSvr">
+    <Parameter Name="IssuerUri" Value="http://localhost:10103"/>
+    <Parameter Name="RequireHttps" Value="false"/>
+  </Section>
+  <Section Name="Minio">
+    <Parameter Name="Endpoint" Value="127.0.0.1:9000" />
+    <Parameter Name="BucketName" Value="eap" />
+    <Parameter Name="AccessKey" Value="A9D5AK5B8KJPVNHGNEZ2" />
+    <Parameter Name="SecretKey" Value="nfiCNF3R0be3w8UD9xcAZlcJq4cYp3y4eT87WO0g" />
+  </Section>
+</Settings>

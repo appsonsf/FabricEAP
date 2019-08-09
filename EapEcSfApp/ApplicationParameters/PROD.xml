@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/EapEc" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="EnterpriseContactService_InstanceCount" Value="2" />
+    <Parameter Name="Diagnostics_ElasticsearchHost" Value="http://elasticsearch.server:9200" />
+    <Parameter Name="RabbitMQ_mdm_HostAddress" Value="rabbitmq://rabbitmq.server/mdm/" />
+    <Parameter Name="RabbitMQ_mdm_Username" Value="mdm" />
+    <Parameter Name="RabbitMQ_mdm_Password" Value="#{RabbitMQ_mdm_Password}#" />
+    <Parameter Name="RabbitMQ_ms_HostAddress" Value="rabbitmq://rabbitmq.server/ms/" />
+    <Parameter Name="RabbitMQ_ms_Username" Value="ms" />
+    <Parameter Name="RabbitMQ_ms_Password" Value="#{RabbitMQ_ms_Password}#" />
+    <Parameter Name="EnterpriseContactService_ServiceDbConnection" Value="#{EnterpriseContactService_ServiceDbConnection}#" />
+  </Parameters>
+</Application>

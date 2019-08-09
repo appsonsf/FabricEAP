@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ConfigMgmtApi\ConfigMgmtApi.csproj" />
+    <ProjectReference Include="..\..\src\ConfigMgmtDomain\ConfigMgmtDomain.csproj" />
+    <ProjectReference Include="..\..\src\SystemConfigStateService\SystemConfigStateService.csproj" />
+    <ProjectReference Include="..\..\src\UserConfigStateService\UserConfigStateService.csproj" />
+    <ProjectReference Include="..\UnitTestCommon\UnitTestCommon.csproj" />
+  </ItemGroup>
+
+</Project>

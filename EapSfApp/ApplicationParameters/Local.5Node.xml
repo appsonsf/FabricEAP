@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/Eap" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="NotifyGatewayWeb_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="AttachmentStateService_MinReplicaSetSize" Value="2" />
+    <Parameter Name="AttachmentStateService_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="TodoCenterProxyApi_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="ApiGateway_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="UserConfigStateService_MinReplicaSetSize" Value="2" />
+    <Parameter Name="UserConfigStateService_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="SystemConfigStateService_MinReplicaSetSize" Value="2" />
+    <Parameter Name="SystemConfigStateService_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="NotifySessionActorService_MinReplicaSetSize" Value="2" />
+    <Parameter Name="NotifySessionActorService_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="NotifySessionActorService_PartitionCount" Value="1" />
+    <Parameter Name="ConversationCtrlStateService_MinReplicaSetSize" Value="2" />
+    <Parameter Name="ConversationCtrlStateService_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="ConversationMsgStateService_MinReplicaSetSize" Value="2" />
+    <Parameter Name="ConversationMsgStateService_TargetReplicaSetSize" Value="3" />
+  </Parameters>
+</Application>

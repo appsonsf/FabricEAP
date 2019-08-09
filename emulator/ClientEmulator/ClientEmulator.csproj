@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8D481E45-210A-486C-911C-F7B29D414A60}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ClientEmulator</RootNamespace>
+    <AssemblyName>ClientEmulator</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChatBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChatBox.Designer.cs">
+      <DependentUpon>ChatBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\BizUrlConfig.cs" />
+    <Compile Include="Config\ClientConfig.cs" />
+    <Compile Include="Config\URLConfig.cs" />
+    <Compile Include="IMChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IMChatForm.Designer.cs">
+      <DependentUpon>IMChatForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoginControl.Designer.cs">
+      <DependentUpon>LoginControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\BizService.cs" />
+    <Compile Include="Services\ChatHub.cs" />
+    <Compile Include="Services\ConversationService.cs" />
+    <Compile Include="Services\ConversationService.Group.cs" />
+    <Compile Include="Services\MessageProccessor.cs" />
+    <Compile Include="Services\Models\UserInfo.cs" />
+    <Compile Include="TokenResponseExtensions.cs" />
+    <Compile Include="..\..\src\InstantMessageApi\ViewModels\*.cs" Link=".\P2P" />
+    <Compile Include="..\..\src\EnterpriseContactApi\ViewModels\*.cs" Link=".\GROUP" />
+    <Compile Include="UploadParam.cs" />
+    <EmbeddedResource Include="ChatBox.resx">
+      <DependentUpon>ChatBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IMChatForm.resx">
+      <DependentUpon>IMChatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginControl.resx">
+      <DependentUpon>LoginControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IdentityModel">
+      <Version>3.10.7</Version>
+    </PackageReference>
+    <PackageReference Include="MassTransit.RabbitMQ">
+      <Version>5.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Http">
+      <Version>2.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="RestSharp">
+      <Version>106.6.9</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ApiCommon\ApiCommon.csproj">
+      <Project>{39a99a37-403c-4ecd-95c0-ac3bcc8e806e}</Project>
+      <Name>ApiCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Base.Eap.Notify.MsgContracts\Base.Eap.Notify.MsgContracts.csproj">
+      <Project>{24e5e206-346b-4e6c-bcd4-645a455bb528}</Project>
+      <Name>Base.Eap.Notify.MsgContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\InstantMessageDomain\InstantMessageDomain.csproj">
+      <Project>{35248832-5e92-4dfd-993f-8e81f886323f}</Project>
+      <Name>InstantMessageDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NotifyDomain\NotifyDomain.csproj">
+      <Project>{da5c4948-7633-4c3d-82d7-3e6ad168b1ce}</Project>
+      <Name>NotifyDomain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

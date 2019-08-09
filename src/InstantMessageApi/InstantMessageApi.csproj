@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>InstantMessage</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiCommon\ApiCommon.csproj" />
+    <ProjectReference Include="..\EnterpriseContactDomain\EnterpriseContactDomain.csproj" />
+    <ProjectReference Include="..\InstantMessageDomain\InstantMessageDomain.csproj" />
+    <ProjectReference Include="..\Utility\Utility.csproj" />
+  </ItemGroup>
+
+</Project>

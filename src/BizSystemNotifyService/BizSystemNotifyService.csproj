@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
+    <ServerGarbageCollection>True</ServerGarbageCollection>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <TargetLatestRuntimePatch>False</TargetLatestRuntimePatch>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="3.3.654" />
+    <PackageReference Include="ServiceFabric.Contrib.MassTransitListener" Version="1.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConfigMgmtDomain\ConfigMgmtDomain.csproj" />
+    <ProjectReference Include="..\EnterpriseContactDomain\EnterpriseContactDomain.csproj" />
+    <ProjectReference Include="..\NotifyDomain\NotifyDomain.csproj" />
+    <ProjectReference Include="..\Base.Eap.Notify.MsgContracts\Base.Eap.Notify.MsgContracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="PackageRoot\Config\eventFlowConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+</Project>
